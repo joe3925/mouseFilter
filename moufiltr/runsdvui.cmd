@@ -1,0 +1,2 @@
+cd /d "C:\Users\boden\OneDrive\Documents\moufiltr" &&msbuild "moufiltr.vcxproj" /t:sdv /p:inputs="/check /devenv" /p:configuration="Release" /p:platform="x64" /p:SolutionDir="C:\Users\boden\OneDrive\Documents\moufiltr" 
+exit 0 

@@ -1,0 +1,2 @@
+C:\Users\boden\OneDrive\Documents\moufiltr\x64\Debug\moufiltr.sys
+C:\Users\boden\OneDrive\Documents\moufiltr pnp test\x64\Debug\moufiltr.sys

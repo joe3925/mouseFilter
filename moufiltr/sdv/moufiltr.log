@@ -1,0 +1,20 @@
+﻿  Building 'moufiltr' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Release\moufiltr.inf
+  Stamping [Version] section with DriverVer=01/09/2024,11.12.36.299
+C:\Program Files (x86)\Windows Kits\10\build\10.0.22621.0\WindowsDriver.common.targets(559,5): warning MSB8015: Forcing a rebuild of all source files due to the contents of "C:\Users\boden\OneDrive\Documents\moufiltr\x64\Release\moufiltr.tlog\stampinf.command.1.tlog" being invalid.
+  moufiltr.vcxproj -> C:\Users\boden\OneDrive\Documents\moufiltr\x64\Release\moufiltr.sys
+  Driver is 'Universal'.
+  .........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\Users\boden\OneDrive\Documents\moufiltr\x64\Release\moufiltr\kmdfsamples.cat
+  Done Adding Additional Store
+  Successfully signed: x64\Release\moufiltr\kmdfsamples.cat
+  

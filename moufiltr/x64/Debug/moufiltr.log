@@ -1,0 +1,53 @@
+﻿  Building 'moufiltr' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Debug\moufiltr.inf
+  Stamping [Version] section with DriverVer=03/20/2024,10.36.6.603
+  moufiltr.c
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(93,37): warning C4057: 'function': 'PFN_WDF_DRIVER_DEVICE_ADD' differs in indirection to slightly different base types from 'int (__cdecl *)(WDFDRIVER,PWDFDEVICE_INIT)'
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(111,17): warning C4047: '==': 'WDFDRIVER' differs in levels of indirection from 'ULONG'
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(115,14): warning C4047: 'function': 'PCSTR' differs in levels of indirection from 'NTSTATUS'
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(115,14): warning C4024: 'DbgPrint': different types for formal and actual parameter 1
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(131,9): warning C4033: 'DriverEntry' must return a value
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(141,9): warning C4033: 'DriverEntry' must return a value
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(150,3): warning C4142: 'MouFilterDeviceCreate': benign redefinition of type
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(37,5): message : see declaration of 'MouFilterDeviceCreate'
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(148,25): warning C4100: 'Driver': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(153,14): warning C4189: 'ioReadQueue': local variable is initialized but not referenced
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(270,39): warning C4100: 'driver': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(275,25): warning C4100: 'hDevice': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(281,59): warning C4100: 'Length': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(281,43): warning C4100: 'Request': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(281,25): warning C4100: 'Queue': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(287,60): warning C4100: 'Length': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(287,44): warning C4100: 'Request': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(287,26): warning C4100: 'Queue': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(323,45): warning C4047: 'function': 'PCUNICODE_STRING' differs in levels of indirection from 'unsigned short (*)[17]'
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(323,45): warning C4024: 'WdfDeviceInitAssignName': different types for formal and actual parameter 2
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(342,57): warning C4047: 'function': 'PCUNICODE_STRING' differs in levels of indirection from 'unsigned short (*)[21]'
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(342,57): warning C4024: 'WdfDeviceCreateSymbolicLink': different types for formal and actual parameter 2
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(377,26): warning C4098: 'IO_deviceCreate': 'void' function returning a value
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(393,18): warning C4098: 'IO_deviceCreate': 'void' function returning a value
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(400,22): warning C4100: 'InputBufferLength': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(399,22): warning C4100: 'OutputBufferLength': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(398,22): warning C4100: 'Request': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(397,22): warning C4100: 'Queue': unreferenced formal parameter
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(490,33): warning C4101: 'hookMouse': unreferenced local variable
+C:\Users\boden\OneDrive\Documents\moufiltr\moufiltr.c(145): warning C4715: 'DriverEntry': not all control paths return a value
+  moufiltr.vcxproj -> C:\Users\boden\OneDrive\Documents\moufiltr\x64\Debug\moufiltr.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Users\boden\OneDrive\Documents\moufiltr\x64\Debug\moufiltr.sys
+  
+  Driver is 'Universal'.
+  .........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\Users\boden\OneDrive\Documents\moufiltr\x64\Debug\moufiltr\kmdfsamples.cat
+  Done Adding Additional Store
+  Successfully signed: x64\Debug\moufiltr\kmdfsamples.cat
+  
