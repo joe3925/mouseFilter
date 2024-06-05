@@ -1,140 +1,57 @@
-/*++
-Copyright (c) 2008  Microsoft Corporation
-
-Module Name:
-
-    moufiltr.h
-
-Abstract:
-
-    This module contains the common private declarations for the mouse
-    packet filter
-
-Environment:
-
-    kernel mode only
-
-Notes:
-
-
-Revision History:
-
-
---*/
-
-#ifndef MOUFILTER_H
-#define MOUFILTER_H
-
+#pragma once
 #include <ntddk.h>
 #include <kbdmou.h>
 #include <ntddmou.h>
 #include <ntdd8042.h>
 #include <wdf.h>
-
-
-
-
-
 #if DBG
-
-#define TRAP()                      DbgBreakPoint()
-
 #define DebugPrint(_x_) DbgPrint _x_
-
-#else   // DBG
-
-#define TRAP()
-
+#else
 #define DebugPrint(_x_)
-
 #endif
-#define MY_MOUSE_FILTER_DEVICE_NAME L"\\Device\\moufiltr"
-#define MY_MOUSE_FILTER_SYMLINK_NAME L"\\DosDevices\\moufiltr"
 
+#define NTDEVICE_NAME         L"\\Device\\moufiltr"
+#define SYMBOLIC_NAME_STRING  L"\\DosDevices\\moufiltr"
 
-typedef struct _DEVICE_EXTENSION
-{
- 
-     //
-    // Previous hook routine and context
-    //                               
-    PVOID UpperContext;
-     
-    PI8042_MOUSE_ISR UpperIsrHook;
+using counter_t = long long;
+constexpr size_t MAX_DEV_ID_LEN = 200;
+constexpr ULONG IOCTL_GET_CURRENT_PACKET = (ULONG)CTL_CODE(0x8888u, 0x88a, METHOD_BUFFERED, FILE_ANY_ACCESS);
 
-    //
-    // Write to the mouse in the context of MouFilter_IsrHook
-    //
-    IN PI8042_ISR_WRITE_PORT IsrWritePort;
-
-    //
-    // Context for IsrWritePort, QueueMousePacket
-    //
-    IN PVOID CallContext;
-
-    //
-    // Queue the current packet (ie the one passed into MouFilter_IsrHook)
-    // to be reported to the class driver
-    //
-    IN PI8042_QUEUE_PACKET QueueMousePacket;
-
-    //
-    // The real connect data that this driver reports to
-    //
-    CONNECT_DATA UpperConnectData;
-
-
-    BOOLEAN enable;
-    BOOLEAN keep_time;
-    BOOLEAN set_extra_info;
+typedef struct _DEVICE_EXTENSION {
+    bool enable;
+    bool keep_time;
+    bool set_extra_info;
     double dpi_factor;
+    counter_t counter;
+    CONNECT_DATA UpperConnectData;
+    WCHAR dev_id[MAX_DEV_ID_LEN];
+} DEVICE_EXTENSION, * PDEVICE_EXTENSION;
 
+WDF_DECLARE_CONTEXT_TYPE_WITH_NAME(DEVICE_EXTENSION, FilterGetData)
 
-    WCHAR dev_id[200];
+EXTERN_C_START
 
-  
-} DEVICE_EXTENSION, *PDEVICE_EXTENSION;
-
-
-WDF_DECLARE_CONTEXT_TYPE_WITH_NAME(DEVICE_EXTENSION,
-                                        FilterGetData)
- 
-//
-// Prototypes
-//
 DRIVER_INITIALIZE DriverEntry;
 
-EVT_WDF_DRIVER_DEVICE_ADD MouFilter_EvtDeviceAdd;
-EVT_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL MouFilter_EvtIoInternalDeviceControl;
- 
-VOID
-MouFilter_DispatchPassThrough(
-     _In_ WDFREQUEST Request,
-    _In_ WDFIOTARGET Target
-    );
+EVT_WDF_DRIVER_DEVICE_ADD EvtDeviceAdd;
+EVT_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL EvtIoInternalDeviceControl;
+EVT_WDF_IO_QUEUE_IO_DEVICE_CONTROL IOcontrol;
+EVT_WDF_OBJECT_CONTEXT_CLEANUP DeviceCleanup;
 
-BOOLEAN
-MouFilter_IsrHook (
-    PVOID         DeviceExtension,
-    PMOUSE_INPUT_DATA       CurrentInput, 
-    POUTPUT_PACKET          CurrentOutput,
-    UCHAR                   StatusByte,
-    PUCHAR                  DataByte,
-    PBOOLEAN                ContinueProcessing,
-    PMOUSE_STATE            MouseState,
-    PMOUSE_RESET_SUBSTATE   ResetSubState
-);
+VOID WriteDelay(VOID);
+VOID DriverInit(WDFDRIVER);
+NTSTATUS CreateControlDevice(WDFDRIVER);
 
-VOID
-MouFilter_ServiceCallback(
+EXTERN_C_END
+
+VOID FilterCallback(
     IN PDEVICE_OBJECT DeviceObject,
     IN PMOUSE_INPUT_DATA InputDataStart,
     IN PMOUSE_INPUT_DATA InputDataEnd,
     IN OUT PULONG InputDataConsumed
-    );
+);
 
-
-
-#endif  // MOUFILTER_H
-
-
+VOID DispatchPassThrough(
+    _In_ WDFREQUEST Request,
+    _In_ WDFIOTARGET Target
+);
